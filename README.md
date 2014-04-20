@@ -1,7 +1,4 @@
-#VPR Webfaction Project Template
-This stack is used by VPR to publish news apps and can be used for anything from building a blog to creating web applications.
-
-This template assumes that your host is Webfaction and includes a good deal of VPR specific code. For a more generic template, see the [VPR App Template](http://github.com/vprnet/app-template) that was the basis for this template.
+#VPR Summer Festival Page
 
 ## Author
 [Matt Parrilla](http://twitter.com/mattparrilla)

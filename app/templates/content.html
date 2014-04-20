@@ -5,8 +5,22 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-xs-12">
-            <h2>This is the VPR App Template</h2>
+        <div class="col-sm-8">
+            <form id="search_for_festival" class="input-group">
+                <input type="text" class="form-control" placeholder="Enter Festival Name">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button">Search</button>
+                </span>
+            </form>
+            <p><a href="#" id="remove_past">Remove Past Festivals</a> | <a href="#" id="just_classical">Just Classical</a> | <a href="#" id="everything_else">Everything Else</a></p>
+            <div id="festivals">
+            {% for festival in festivals %}
+                <div class="festival {{ festival.genre|lower }}{% if festival.past %} past{% endif %}">
+                    <h2><a href="{{ festival.website }}">{{ festival.name }}</a></h2>
+                    <p>{{ festival.startdate }}</p>
+                </div>
+            {% endfor %}
+            </div>
         </div>
     </div>
 </div>
@@ -14,5 +28,6 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{{ url_for('static', filename='js/script-ck.js') }}"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 {% endblock %}

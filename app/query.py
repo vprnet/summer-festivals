@@ -5,21 +5,37 @@ import Image
 import ImageOps
 import urllib
 import os
+from operator import itemgetter
 from bs4 import BeautifulSoup as Soup
-from datetime import datetime
+from datetime import datetime, date
 from cStringIO import StringIO
 from google_spreadsheet.api import SpreadsheetAPI
 from config import NPR_API_KEY, ABSOLUTE_PATH, GOOGLE_SPREADSHEET
 
 
-def get_google_sheet(sheet_key='1DC5i2FD4bwZFQu-BplE3vfpEUNVezy3TC2NVmKeXGkM', sheet_id='od6'):
-    """Uses python_google_spreadsheet API to interact with sheet"""
+def get_festivals(sheet_key='1DC5i2FD4bwZFQu-BplE3vfpEUNVezy3TC2NVmKeXGkM', sheet_id='od6'):
+    """Uses python_google_spreadsheet API to read sheet"""
     api = SpreadsheetAPI(GOOGLE_SPREADSHEET['USER'],
         GOOGLE_SPREADSHEET['PASSWORD'],
         GOOGLE_SPREADSHEET['SOURCE'])
     sheet = api.get_worksheet(sheet_key, sheet_id)
-    sheet_object = sheet.get_rows()
-    return sheet_object
+    full_list = sheet.get_rows()
+
+    # If a festival has already happened, mark as past for filter
+    now = date.today()
+    for festival in full_list:
+        end_date = datetime.strptime(festival['enddate'], "%m/%d/%Y").date()
+        start_date = datetime.strptime(festival['startdate'], "%m/%d/%Y").date()
+
+        # Overwrite start and end date with datetime object
+        festival['startdate'] = start_date
+        festival['enddate'] = end_date
+        if end_date < now:
+            festival['past'] = True
+        else:
+            festival['past'] = False
+    festivals = sorted(full_list, key=itemgetter('startdate'))
+    return festivals
 
 
 def api_feed(tag, numResults=1, char_limit=240, thumbnail=False):

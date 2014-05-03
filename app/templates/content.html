@@ -26,7 +26,8 @@
                     Festival Over
                     {% endif %}
                     <h2><a href="{{ festival.website }}">{{ festival.name }}</a></h2>
-                    <p class="location">{{ festival.city|title }}, {{ festival.state }}</p>
+                    <p class="location">{{ festival.city|title }}{% if festival.state %}, {{ festival.state }}{% endif %}</p>
+                    <p class="detail_prompt">DETAILS <i class="icon ion-plus-circled"></i></p>
                     <div class="detail">
                     {% for event in festival.events %}
                         <p class="dates{% if event.past %} past_event{% endif %}">

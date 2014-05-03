@@ -6,6 +6,7 @@ h2 {
 }
 
 div.festival {
+    position: relative;
     margin-bottom: 20px;
     background: white;
     padding: 10px;
@@ -15,8 +16,15 @@ div.festival {
         color: $gray;
     }
     h2 {
+        a {
+            color: $blue;
+            border-bottom: 0;
+            &:hover {
+                border-bottom: 2px solid lighten($blue, 5%);
+            }
+        }
         margin-top: 0;
-        margin-bottom: 0.2em;
+        margin-bottom: 0.1em;
     }
     p.location {
         color: lighten($gray, 10%);
@@ -32,4 +40,16 @@ div.festival {
 
 .folk {
     border-left: 5px solid $folk;
+}
+.detail {
+    display: none;
+}
+
+.detail_prompt {
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    color: $gray;
 }

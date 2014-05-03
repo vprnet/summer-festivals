@@ -16,9 +16,30 @@
             <div id="festivals">
                 {% for festival in festivals %}
                 <div class="festival {{ festival.genre|lower }}{% if festival.past %} past{% endif %}">
-                    <p class="dates">{{ festival.dates }}
+                    <p class="dates">
+                    {% if not festival.past %}
+                    {{ festival.start_date.strftime('%B %d') }}
+                    {% if festival.start_date != festival.end_date %}
+                    &mdash; {{ festival.end_date.strftime('%B %d') }}
+                    {% endif %}
+                    {% else %}
+                    Festival Over
+                    {% endif %}
                     <h2><a href="{{ festival.website }}">{{ festival.name }}</a></h2>
                     <p class="location">{{ festival.city|title }}, {{ festival.state }}</p>
+                    <div class="detail">
+                    {% for event in festival.events %}
+                        <p class="dates{% if event.past %} past_event{% endif %}">
+                            {{ festival.start_date.strftime('%B %d') }}
+                            {% if festival.start_date != festival.end_date %}
+                            &mdash; {{ festival.end_date.strftime('%B %d') }}
+                            {% endif %}
+                        </p>
+                        <p class="event_address">
+                            {{ event.address }} // {{ event.city }},
+                            {{ event.state }}</p>
+                    {% endfor %}
+                    </div>
                 </div>
                 {% endfor %}
             </div>

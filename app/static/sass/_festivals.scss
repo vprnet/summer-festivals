@@ -1,0 +1,35 @@
+$classical: #fc8d59;
+$folk: #91cf60;
+
+h2 {
+    font-size: 24px;
+}
+
+div.festival {
+    margin-bottom: 20px;
+    background: white;
+    padding: 10px;
+    p.dates {
+        margin-bottom: 0;
+        font-weight: 500;
+        color: $gray;
+    }
+    h2 {
+        margin-top: 0;
+        margin-bottom: 0.2em;
+    }
+    p.location {
+        color: lighten($gray, 10%);
+        font-weight: 500;
+        font-size: 18px;
+        margin-bottom: 0;
+    }
+}
+
+.classical {
+    border-left: 5px solid $classical;
+}
+
+.folk {
+    border-left: 5px solid $folk;
+}

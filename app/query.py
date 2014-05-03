@@ -27,6 +27,7 @@ def get_festivals(sheet_key='1DC5i2FD4bwZFQu-BplE3vfpEUNVezy3TC2NVmKeXGkM', shee
 def restructure_festivals(sheet_data):
     # If a festival has already happened, mark as past for filter
     now = date.today()
+    now = date(2014, 07, 04)
     festival_names = []
     new_list = []
     for festival in sheet_data:
@@ -51,43 +52,31 @@ def restructure_festivals(sheet_data):
                 'city': festival['city'],
                 'state': festival['state'],
                 'genre': festival['genre'],
+                'start_date': start_date,
+                'end_date': end_date,
                 'events': [event]}
             new_list.append(this_fest)
         else:
             for existing in new_list:
                 if name == existing['name']:
                     existing['events'].append(event)
+                    if start_date < existing['start_date']:
+                        existing['start_date'] = start_date
+                    if end_date > existing['end_date']:
+                        existing['end_date'] = end_date
 
-    #festivals = sorted(new_list, key=itemgetter('dates'))
-    return new_list
+    festival['past'] = False
+    for festival in new_list:
+        if festival['end_date'] < now:
+            festival['past'] = True
+            # below line allows me to keep date ordering but moves old festivals
+            # to bottom
+            festival['start_date'] = festival['start_date'].replace(year=2020)
+        elif festival['start_date'] < now:
+            festival['start_date'] = now
 
-
-def get_date_range(start, end, dates):
-    """ Takes weird input of date ranges and returns all matched dates
-    without duplicates.
-    ex: 5/30 - 6/8, 6/4 - 6/10, 6/5 - 6/8 and 6/12 - 6/14
-    will return: 5/30 - 6/10 and 6/10 - 6/14"""
-
-    for date in dates:
-        if start == end:
-            if start < date[0] or start > date[1]:
-                dates.append(start)
-            continue
-        if start < date[0]:
-            if end > date[1]:  # if start is earlier AND end is later than range
-                date[0] = start
-                date[1] = end
-            elif end < date[0]:  # if start and end before range
-                dates.append([start, end])
-            else:  # if start is earlier, end is within range
-                date[0] = start
-        elif start > date[1]:  # if new range later than current range
-            dates.append([start, end])
-        elif end > date[1]:  # start within range, end is outside
-            date[1] = end
-
-    dates.sort(key=lambda tup: tup[0])
-    return dates
+    festivals = sorted(new_list, key=itemgetter('start_date'))
+    return festivals
 
 
 def api_feed(tag, numResults=1, char_limit=240, thumbnail=False):

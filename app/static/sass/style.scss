@@ -2,3 +2,8 @@
 @import "vpr";
 @import "vpr-svg";
 @import "ionicons";
+@import "festivals";
+
+body {
+    background: lighten($gray, 40%);
+}

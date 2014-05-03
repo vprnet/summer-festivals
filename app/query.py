@@ -20,22 +20,74 @@ def get_festivals(sheet_key='1DC5i2FD4bwZFQu-BplE3vfpEUNVezy3TC2NVmKeXGkM', shee
         GOOGLE_SPREADSHEET['SOURCE'])
     sheet = api.get_worksheet(sheet_key, sheet_id)
     full_list = sheet.get_rows()
+    festivals = restructure_festivals(full_list)
+    return festivals
 
+
+def restructure_festivals(sheet_data):
     # If a festival has already happened, mark as past for filter
     now = date.today()
-    for festival in full_list:
+    festival_names = []
+    new_list = []
+    for festival in sheet_data:
+        name = festival['name']
         end_date = datetime.strptime(festival['enddate'], "%m/%d/%Y").date()
         start_date = datetime.strptime(festival['startdate'], "%m/%d/%Y").date()
-
-        # Overwrite start and end date with datetime object
-        festival['startdate'] = start_date
-        festival['enddate'] = end_date
+        event = {'start_date': start_date,
+            'end_date': end_date,
+            'address': festival['address'],
+            'city': festival['city'],
+            'state': festival['state']}
         if end_date < now:
-            festival['past'] = True
+            event['past'] = True
         else:
-            festival['past'] = False
-    festivals = sorted(full_list, key=itemgetter('startdate'))
-    return festivals
+            event['past'] = False
+
+        if name not in festival_names:
+            festival_names.append(name)
+
+            this_fest = {'name': name,
+                'dates': [[start_date, end_date]],
+                'city': festival['city'],
+                'state': festival['state'],
+                'genre': festival['genre'],
+                'events': [event]}
+            new_list.append(this_fest)
+        else:
+            for existing in new_list:
+                if name == existing['name']:
+                    existing['events'].append(event)
+
+    #festivals = sorted(new_list, key=itemgetter('dates'))
+    return new_list
+
+
+def get_date_range(start, end, dates):
+    """ Takes weird input of date ranges and returns all matched dates
+    without duplicates.
+    ex: 5/30 - 6/8, 6/4 - 6/10, 6/5 - 6/8 and 6/12 - 6/14
+    will return: 5/30 - 6/10 and 6/10 - 6/14"""
+
+    for date in dates:
+        if start == end:
+            if start < date[0] or start > date[1]:
+                dates.append(start)
+            continue
+        if start < date[0]:
+            if end > date[1]:  # if start is earlier AND end is later than range
+                date[0] = start
+                date[1] = end
+            elif end < date[0]:  # if start and end before range
+                dates.append([start, end])
+            else:  # if start is earlier, end is within range
+                date[0] = start
+        elif start > date[1]:  # if new range later than current range
+            dates.append([start, end])
+        elif end > date[1]:  # start within range, end is outside
+            date[1] = end
+
+    dates.sort(key=lambda tup: tup[0])
+    return dates
 
 
 def api_feed(tag, numResults=1, char_limit=240, thumbnail=False):

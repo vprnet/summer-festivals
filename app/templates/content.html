@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}App Template | VPR{% endblock %}
+{% block title %}{{ page_title }} | VPR{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -14,12 +14,13 @@
             </form>
             <p><a href="#" id="remove_past">Remove Past Festivals</a> | <a href="#" id="just_classical">Just Classical</a> | <a href="#" id="everything_else">Everything Else</a></p>
             <div id="festivals">
-            {% for festival in festivals %}
+                {% for festival in festivals %}
                 <div class="festival {{ festival.genre|lower }}{% if festival.past %} past{% endif %}">
+                    <p class="dates">{{ festival.dates }}
                     <h2><a href="{{ festival.website }}">{{ festival.name }}</a></h2>
-                    <p>{{ festival.startdate }}</p>
+                    <p class="location">{{ festival.city|title }}, {{ festival.state }}</p>
                 </div>
-            {% endfor %}
+                {% endfor %}
             </div>
         </div>
     </div>

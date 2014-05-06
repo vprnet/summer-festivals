@@ -20,35 +20,33 @@ var classical = false,
     otherFests = $('div.folk'),
     classicalFests = $('div.classical');
 
-$('a#just_classical').click(function(event) {
-    event.preventDefault();
+$('p#just_classical').click(function(event) {
     if (!classical) {
         classicalFests.show();
         otherFests.hide();
         classical = true;
         folk = false;
-        $(this).css("font-weight", "600");
-        $('a#everything_else').css('font-weight', '400');
+        $(this).css("background", "#fc8d59");
+        $('p#everything_else').css('background', '#f4faef');
     } else {
         otherFests.show();
         classical = false;
-        $(this).css("font-weight", "400");
+        $(this).css("background", "#fff4ef");
     }
 });
 
-$('a#everything_else').click(function(event) {
-    event.preventDefault();
+$('p#everything_else').click(function(event) {
     if (!folk) {
         classicalFests.hide();
         otherFests.show();
         folk = true;
         classical = false;
-        $(this).css("font-weight", "600");
-        $('a#just_classical').css('font-weight', '400');
+        $(this).css("background", "#91cf60");
+        $('p#just_classical').css('background', '#fff4ef');
     } else {
         classicalFests.show();
         folk = false;
-        $(this).css("font-weight", "400");
+        $(this).css("background", "#f4faef");
     }
 });
 
@@ -76,4 +74,8 @@ $('form#search_for_festival button').on('click', function() {
     var query = $(this).parent().siblings('input').val();
     console.log(query);
     searchFestivals(query);
+});
+
+$('p.detail_prompt').on('click', function() {
+    $(this).parent().siblings('.detail').toggleClass('hidden');
 });

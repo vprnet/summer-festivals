@@ -11,10 +11,8 @@ $tablet: 768px;
 $phone: 500px;
 $laptop: 1000px;
 $big-screen: 1200px;
+$gray-bg: lighten($gray, 40%);
 
-a {
-    @include lt_link($black, white, 2px);
-}
 
 html, body {
     height: 100%;

@@ -12,34 +12,49 @@
                     <button class="btn btn-primary" type="button">Search</button>
                 </span>
             </form>
-            <p><a href="#" id="remove_past">Remove Past Festivals</a> | <a href="#" id="just_classical">Just Classical</a> | <a href="#" id="everything_else">Everything Else</a></p>
+            <div id="filters" class="row">
+                <div class="col-xs-6">
+                    <p class="pill" id="just_classical">Just Classical</p>
+                </div>
+                <div class="col-xs-6">
+                    <p class="pill" id="everything_else">Everything Else</p>
+                </div>
+            </div>
             <div id="festivals">
                 {% for festival in festivals %}
                 <div class="festival {{ festival.genre|lower }}{% if festival.past %} past{% endif %}">
-                    <p class="dates">
-                    {% if not festival.past %}
-                    {{ festival.start_date.strftime('%B %d') }}
-                    {% if festival.start_date != festival.end_date %}
-                    &mdash; {{ festival.end_date.strftime('%B %d') }}
-                    {% endif %}
-                    {% else %}
-                    Festival Over
-                    {% endif %}
-                    <h2><a href="{{ festival.website }}">{{ festival.name }}</a></h2>
-                    <p class="location">{{ festival.city|title }}{% if festival.state %}, {{ festival.state }}{% endif %}</p>
-                    <p class="detail_prompt">DETAILS <i class="icon ion-plus-circled"></i></p>
-                    <div class="detail">
-                    {% for event in festival.events %}
-                        <p class="dates{% if event.past %} past_event{% endif %}">
-                            {{ festival.start_date.strftime('%B %d') }}
-                            {% if festival.start_date != festival.end_date %}
-                            &mdash; {{ festival.end_date.strftime('%B %d') }}
+                    <div class="headline">
+                        <p class="dates">
+                        {% if not festival.past %}
+                        {{ festival.start_date.strftime('%B %-d') }}
+                        {% if festival.start_date != festival.end_date %}
+                        &mdash; {{ festival.end_date.strftime('%B %-d') }}
+                        {% endif %}
+                        {% else %}
+                        Festival Over
+                        {% endif %}
+                        <h2>{{ festival.name }}</h2>
+                        <p class="location">{{ festival.city|title }}{% if festival.state %}, {{ festival.state }}{% endif %}</p>
+                        <p class="detail_prompt">DETAILS <i class="icon ion-plus-circled"></i></p>
+                    </div>
+                    <div class="detail hidden">
+                        <p class="festival_website"><a href="{{ festival.website }}">Festival Website</a></p>
+                        <p class="festival_location"><span>{% if festival.events|length > 1%}Locations &amp; Dates{% else %}Location{% endif %}</span></p>
+                        {% for event in festival.events %}
+                            {% if festival.events|length > 1 %}
+                            <p class="dates{% if event.past %} past_event{% endif %}">
+                                {{ event.start_date.strftime('%B %-d') }}
+                                {% if event.start_date != event.end_date %}
+                                &mdash; {{ event.end_date.strftime('%B %-d') }}
+                                {% endif %}
+                            </p>
                             {% endif %}
-                        </p>
-                        <p class="event_address">
-                            {{ event.address }} // {{ event.city }},
-                            {{ event.state }}</p>
-                    {% endfor %}
+                            <p class="event_address">
+                                {{ event.address }} // {{ event.city }},
+                                {{ event.state }}</p>
+
+                            <p class="view_map"><span class="icon ion-ios7-location"></span> <a href="http://maps.google.com?q={{ event.address }}, {{ event.city }}, {{ event.state }}" alt="Map to {{ festival.name }}">view map</a></p>
+                        {% endfor %}
                     </div>
                 </div>
                 {% endfor %}

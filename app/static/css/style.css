@@ -1,11 +1,3 @@
-a {
-  border-bottom: 2px solid #e6e6e6;
-  color: #4b5151; }
-  a:hover {
-    text-decoration: none;
-    border-color: #999999;
-    color: #3f4444; }
-
 html, body {
   height: 100%; }
 
@@ -2313,11 +2305,33 @@ footer {
 h2 {
   font-size: 24px; }
 
+form {
+  margin-bottom: 15px; }
+
+#filters {
+  margin-bottom: 10px;
+  text-align: center; }
+  #filters p {
+    border: 3px solid #fc8d59;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 500; }
+  #filters p#everything_else {
+    border-color: #91cf60;
+    background: #f8fcf5; }
+  #filters p#just_classical {
+    background: #fff4ef; }
+
 div.festival {
   position: relative;
-  margin-bottom: 20px;
-  background: white;
-  padding: 10px; }
+  margin-bottom: 20px; }
+  div.festival .headline, div.festival .detail {
+    background: white;
+    padding: 10px; }
+  div.festival .headline {
+    position: relative;
+    margin-bottom: 3px; }
   div.festival p.dates {
     margin-bottom: 0;
     font-weight: 500;
@@ -2336,13 +2350,36 @@ div.festival {
     font-size: 18px;
     margin-bottom: 0; }
 
-.classical {
+div.past {
+  background: #f3f0e7; }
+
+.classical .headline, .classical .detail {
   border-left: 5px solid #fc8d59; }
 
-.folk {
+.folk .headline, .folk .detail {
   border-left: 5px solid #91cf60; }
 
 .detail {
+  font-size: 12px; }
+  .detail .festival_website, .detail .festival_location {
+    font-size: 18px;
+    font-weight: 500; }
+    .detail .festival_website a, .detail .festival_location a {
+      font-size: 14px;
+      color: #307fe2; }
+      .detail .festival_website a:hover, .detail .festival_location a:hover {
+        color: #1b66c4; }
+  .detail .event_address {
+    margin-bottom: 0; }
+  .detail .festival_location {
+    margin-bottom: 5px;
+    color: #3f4444; }
+  .detail p.view_map {
+    color: #307fe2; }
+    .detail p.view_map span {
+      margin-right: 3px; }
+
+.hidden {
   display: none; }
 
 .detail_prompt {
@@ -2355,3 +2392,6 @@ div.festival {
 
 body {
   background: #dddedf; }
+
+a {
+  color: #307fe2; }

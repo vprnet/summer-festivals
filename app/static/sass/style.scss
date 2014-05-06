@@ -5,5 +5,9 @@
 @import "festivals";
 
 body {
-    background: lighten($gray, 40%);
+    background: $gray-bg;
+}
+
+a {
+    color: $blue;
 }

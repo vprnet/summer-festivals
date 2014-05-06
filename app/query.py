@@ -27,6 +27,7 @@ def get_festivals(sheet_key='1DC5i2FD4bwZFQu-BplE3vfpEUNVezy3TC2NVmKeXGkM', shee
 def restructure_festivals(sheet_data):
     # If a festival has already happened, mark as past for filter
     now = date.today()
+    now = date(2014, 07, 22)
     festival_names = []
     new_list = []
     for festival in sheet_data:

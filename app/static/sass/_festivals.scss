@@ -5,11 +5,40 @@ h2 {
     font-size: 24px;
 }
 
+form {
+    margin-bottom: 15px;
+}
+
+#filters {
+    margin-bottom: 10px;
+    text-align: center;
+    p {
+        border: 3px solid $classical;
+        padding: 5px;
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: 500;
+    }
+    p#everything_else {
+        border-color: $folk;
+        background: lighten($folk, 38%);
+    }
+    p#just_classical {
+        background: lighten($classical, 30%);
+    }
+}
+
 div.festival {
     position: relative;
     margin-bottom: 20px;
-    background: white;
-    padding: 10px;
+    .headline, .detail {
+        background: white;
+        padding: 10px;
+    }
+    .headline {
+        position: relative;
+        margin-bottom: 3px;
+    }
     p.dates {
         margin-bottom: 0;
         font-weight: 500;
@@ -34,14 +63,49 @@ div.festival {
     }
 }
 
-.classical {
+div.past {
+    background: #f3f0e7;
+}
+
+.classical .headline, .classical .detail {
     border-left: 5px solid $classical;
 }
 
-.folk {
+.folk .headline, .folk .detail {
     border-left: 5px solid $folk;
 }
+
 .detail {
+    font-size: 12px;
+    .festival_website, .festival_location {
+        font-size: 18px;
+        font-weight: 500;
+        a {
+            font-size: 14px;
+            color: $blue;
+            &:hover {
+                color: darken($blue, 10%);
+            }
+        }
+    }
+    .event_address {
+        margin-bottom: 0;
+    }
+    .festival_location {
+        margin-bottom: 5px;
+        color: $black;
+        span {
+        }
+    }
+    p.view_map {
+        color: $blue;
+        span {
+            margin-right: 3px;
+        }
+    }
+}
+
+.hidden {
     display: none;
 }
 

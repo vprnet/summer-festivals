@@ -22,9 +22,23 @@ form {
     p#everything_else {
         border-color: $folk;
         background: lighten($folk, 38%);
+        @include transition(all 0.25s);
+        &:hover {
+            background: lighten($folk, 20%);
+        }
     }
     p#just_classical {
         background: lighten($classical, 30%);
+        @include transition(all 0.25s);
+        &:hover {
+            background: lighten($classical, 20%);
+        }
+    }
+    .classical_active {
+        background: $classical !important;
+    }
+    .everything_active {
+        background: $folk !important;
     }
 }
 

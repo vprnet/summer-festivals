@@ -52,27 +52,27 @@ footer {
   footer span#copyright {
     float: right; }
 
-#underwriter {
+#underwriter, #marcomm {
   max-width: 300px;
   margin: 0 auto;
   min-height: 300px; }
-  #underwriter p {
+  #underwriter p, #marcomm p {
     font-size: 12px;
     padding-left: 0;
     margin-top: 3px;
     text-align: center;
     color: #8f9294; }
-    #underwriter p li {
+    #underwriter p li, #marcomm p li {
       display: inline; }
-    #underwriter p a {
+    #underwriter p a, #marcomm p a {
       border-bottom: 2px solid #e6e6e6;
       color: #828588; }
-      #underwriter p a:hover {
+      #underwriter p a:hover, #marcomm p a:hover {
         text-decoration: none;
         border-color: #999999;
         color: #75787b; }
   @media (max-width: 330px) {
-    #underwriter {
+    #underwriter, #marcomm {
       margin-left: -5px; } }
 
 #social-logos {
@@ -2350,7 +2350,7 @@ div.festival {
     font-size: 18px;
     margin-bottom: 0; }
 
-div.past {
+div.past .headline {
   background: #f3f0e7; }
 
 .classical .headline, .classical .detail {

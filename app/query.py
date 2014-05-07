@@ -60,6 +60,7 @@ def restructure_festivals(sheet_data):
                     if festival['state'] != existing['state']:
                         existing['state'] = False
                     existing['events'].append(event)
+                    print existing['name'], existing['start_date'], start_date
                     if start_date < existing['start_date']:
                         existing['start_date'] = start_date
                     if end_date > existing['end_date']:
@@ -76,7 +77,13 @@ def restructure_festivals(sheet_data):
             # to bottom
             festival['start_date'] = festival['start_date'].replace(year=2020)
         elif festival['start_date'] < now:
-            festival['start_date'] = now
+            if festival['ongoing']:
+                festival['start_date'] = now
+            else:
+                for event in festival['events']:
+                    if event['start_date'] > now:
+                        festival['start_date'] = event['start_date']
+                        break
 
     festivals = sorted(new_list, key=itemgetter('start_date'))
     return festivals

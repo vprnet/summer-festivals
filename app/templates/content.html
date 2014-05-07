@@ -27,11 +27,11 @@
                     <div class="headline {{ festival.genre|lower }}">
                         <p class="dates">
                         {% if not festival.past %}
-                        {{ festival.start_date.strftime('%B %-d') }}
+                        {% if festival.ongoing %}Happening now{% else %}
+                        {{ festival.start_date.strftime('%B %-d') }}{% endif %}
                         {% if festival.start_date != festival.end_date %}
                         &mdash; {{ festival.end_date.strftime('%B %-d') }}
                         {% endif %}
-                        {% if festival.ongoing %}(underway){% endif %}
                         {% else %}
                         This Festival Is Over ({{ festival.start_date.strftime('%B %-d') }} - {{ festival.end_date.strftime('%B %-d') }})
                         {% endif %}

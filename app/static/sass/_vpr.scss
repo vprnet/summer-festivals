@@ -12,6 +12,7 @@ $phone: 500px;
 $laptop: 1000px;
 $big-screen: 1200px;
 $gray-bg: lighten($gray, 40%);
+$white: darken(white, 5%);
 
 
 html, body {
@@ -26,7 +27,8 @@ html, body {
 .navbar {
     border: 0;
     border-radius: 0;
-    background-color: $green;
+    background-color: $black;
+    /*background-color: $green;
     filter: none;
     background-image: linear-gradient(to bottom, lighten($green, $percent), darken($green, $percent));
     background-repeat: repeat-x;
@@ -35,27 +37,31 @@ html, body {
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(lighten($green, $percent)), to(darken($green, $percent)));
     background-image: -webkit-linear-gradient(top, lighten($green, $percent), darken($green, $percent));
     background-image: -o-linear-gradient(top, lighten($green, $percent), darken($green, $percent));
+    */
     min-height: 40px;
-    .navbar-header {
-        float: none;
-    }
-    a.navbar-brand {
-        padding: 10px 15px 5px;
-    }
-    a {
-        border: 0;
-    }
-    #navbar-title {
-        color: darken(white, 5%);
-        font-size: 26px;
-        font-weight: 400;
-        display: inline;
-        position: relative;
-        top: 6px;
-        left: 15px;
-        @media (max-width: $tablet) {
-            display: none;
+    h3 {
+        font-size: 48px;
+        margin-bottom: -10px;
+        a {
+            color: lighten($gray, 40%);
         }
+    }
+    #social_logos {
+        text-align: right;
+        float: right;
+        font-size: 28px;
+        display: inline-block;
+        position: relative;
+        top: 12px;
+        a {
+            color: lighten($gray, 40%);
+        }
+        span.ion-social-facebook {
+            padding-right: 4px;
+        }
+    }
+    .navbar-header {
+        display: inline-block;
     }
 }
 
@@ -95,25 +101,6 @@ footer {
     }
 }
 
-#social-logos {
-    display: inline;
-    height: 40px;
-    width: 300px;
-    a {
-        float: right;
-        margin-top: 2px;
-        padding: 5px 0 5px 10px;
-        div {
-            background-size: 100%;
-        }
-        @media (max-width: $tablet) {
-            &:first-child {
-                margin-right: 15px;
-            }
-        }
-    }
-}
-
 @media (max-width: $tablet) {
     footer {
         padding-bottom: 20px;
@@ -122,4 +109,3 @@ footer {
         margin-left: 5px;
     }
 }
-

@@ -26,15 +26,18 @@ def restructure_festivals(sheet_data):
         name = festival['name']
         end_date = datetime.strptime(festival['enddate'], "%m/%d/%Y").date()
         start_date = datetime.strptime(festival['startdate'], "%m/%d/%Y").date()
+        ongoing = False
+        if now >= start_date and now <= end_date:
+            ongoing = True
+        past = False
+        if end_date < now:
+            past = True
         event = {'start_date': start_date,
             'end_date': end_date,
+            'past': past,
             'address': festival['address'],
             'city': festival['city'],
             'state': festival['state']}
-        if end_date < now:
-            event['past'] = True
-        else:
-            event['past'] = False
 
         if name not in festival_names:
             festival_names.append(name)
@@ -46,6 +49,7 @@ def restructure_festivals(sheet_data):
                 'genre': festival['genre'],
                 'start_date': start_date,
                 'end_date': end_date,
+                'ongoing': ongoing,
                 'events': [event]}
             new_list.append(this_fest)
         else:
@@ -60,6 +64,9 @@ def restructure_festivals(sheet_data):
                         existing['start_date'] = start_date
                     if end_date > existing['end_date']:
                         existing['end_date'] = end_date
+
+                    if ongoing:
+                        existing['ongoing'] = True
 
     festival['past'] = False
     for festival in new_list:

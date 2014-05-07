@@ -6,6 +6,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-8">
+            <h1>Summer Music Festivals 2014</h1>
             <form id="search_for_festival" class="input-group">
                 <input type="text" class="form-control" placeholder="Enter Festival Name">
                 <span class="input-group-btn">
@@ -22,22 +23,23 @@
             </div>
             <div id="festivals">
                 {% for festival in festivals %}
-                <div class="festival {{ festival.genre|lower }}{% if festival.past %} past{% endif %}">
-                    <div class="headline">
+                <div class="festival{% if festival.past %} past{% endif %}">
+                    <div class="headline {{ festival.genre|lower }}">
                         <p class="dates">
                         {% if not festival.past %}
                         {{ festival.start_date.strftime('%B %-d') }}
                         {% if festival.start_date != festival.end_date %}
                         &mdash; {{ festival.end_date.strftime('%B %-d') }}
                         {% endif %}
+                        {% if festival.ongoing %}(underway){% endif %}
                         {% else %}
-                        Festival Over
+                        You Missed It! ({{ festival.start_date.strftime('%B %-d') }} - {{ festival.end_date.strftime('%B %-d') }})
                         {% endif %}
                         <h2>{{ festival.name }}</h2>
                         <p class="location">{{ festival.city|title }}{% if festival.state %}, {{ festival.state }}{% endif %}</p>
                         <p class="detail_prompt">DETAILS <i class="icon ion-plus-circled"></i></p>
                     </div>
-                    <div class="detail hidden">
+                    <div class="detail hidden {{ festival.genre|lower }}">
                         <p class="festival_website"><a href="{{ festival.website }}">Festival Website</a></p>
                         <p class="festival_location"><span>{% if festival.events|length > 1%}Locations &amp; Dates{% else %}Location{% endif %}</span></p>
                         {% for event in festival.events %}

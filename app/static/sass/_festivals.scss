@@ -4,7 +4,7 @@ $folk: #91cf60;
 h1 {
     background: white;
     padding: 10px;
-    font-size: 96px;
+    font-size: 32px;
     font-weight: 900;
     border-bottom: 5px solid $folk;
     border-left: 5px solid $classical;
@@ -12,6 +12,18 @@ h1 {
     border-top: 1px lighten($gray, 30%);
     border-right: 1px lighten($gray, 0%);
     margin: 0 0 30px;
+    @media (min-width: $phone) {
+        font-size: 62px;
+    }
+    @media (min-width: $tablet) {
+        font-size: 50px;
+    }
+    @media (min-width: $laptop) {
+        font-size: 72px;
+    }
+    @media (min-width: $big-screen) {
+        font-size: 96px;
+    }
 }
 
 h2 {
@@ -19,7 +31,7 @@ h2 {
 }
 
 form {
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     .btn {
         font-size: 18px;
         padding: 3px 12px;
@@ -39,6 +51,9 @@ form {
         border-radius: 10px;
         font-size: 18px;
         font-weight: 500;
+        @media (max-width: $phone) {
+            font-size: 14px;
+        }
     }
     p#everything_else {
         border-color: $folk;
@@ -76,16 +91,25 @@ div.festival {
         margin-bottom: 0;
         font-weight: 500;
         color: $gray;
+        @media (max-width: $phone) {
+            font-size: 12px;
+        }
     }
     h2 {
         margin-top: 0;
         margin-bottom: 0.1em;
+        @media (max-width: $phone) {
+            font-size: 18px;
+        }
     }
     p.location {
         color: lighten($gray, 10%);
         font-weight: 500;
         font-size: 18px;
         margin-bottom: 0;
+        @media (max-width: $phone) {
+            font-size: 14px;
+        }
     }
 }
 
@@ -124,8 +148,11 @@ div.past {
     background: white;
     overflow-y: hidden;
     position: relative;
-    padding: 0 10px 10px;
+    padding-bottom: 10px;
     @include transition(all .3s ease);
+    p {
+        padding-left: 10px;
+    }
 
     font-size: 12px;
     .festival_website, .festival_location {
@@ -160,25 +187,26 @@ div.past {
     &.opened {
         max-height: 900px;
         &.events_1 {
-            max-height: 130px;
+            max-height: 150px;
         }
         &.events_2 {
-            max-height: 210px;
+            max-height: 230px;
         }
         &.events_3 {
-            max-height: 270px;
+            max-height: 290px;
         }
         &.events_4 {
-            max-height: 330px;
+            max-height: 350px;
         }
         &.events_5 {
-            max-height: 390px;
+            max-height: 410px;
         }
         &.events_6 {
-            max-height: 450px;
+            max-height: 470px;
         }
     }
     .detail_prompt {
+        cursor: pointer;
         text-align: center;
         padding-top: 2px;
         font-size: 12px;
@@ -188,6 +216,10 @@ div.past {
         i {
             font-size: 14px;
             padding-left: 3px;
+        }
+        @include transition(all .1s ease);
+        &:hover {
+            color: $blue;
         }
     }
 }

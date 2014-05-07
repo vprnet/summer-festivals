@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-md-8 col-sm-7">
             <h1>Summer Music Festivals 2014</h1>
             <form id="search_for_festival" class="input-group">
                 <input type="text" class="form-control" placeholder="Enter Festival Name">
@@ -33,7 +33,7 @@
                         {% endif %}
                         {% if festival.ongoing %}(underway){% endif %}
                         {% else %}
-                        You Missed It! ({{ festival.start_date.strftime('%B %-d') }} - {{ festival.end_date.strftime('%B %-d') }})
+                        This Festival Is Over ({{ festival.start_date.strftime('%B %-d') }} - {{ festival.end_date.strftime('%B %-d') }})
                         {% endif %}
                         <h2>{{ festival.name }}</h2>
                         <p class="location">{{ festival.city|title }}{% if festival.state %}, {{ festival.state }}{% endif %}</p>
@@ -64,7 +64,7 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-md-4 col-sm-5">
             {% include "_underwriter.html" %}
             {% include "_marcomm.html" %}
         </div>

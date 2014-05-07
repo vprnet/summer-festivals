@@ -26,12 +26,12 @@ $('p#just_classical').click(function(event) {
         otherFests.hide();
         classical = true;
         folk = false;
-        $(this).addClass('classical_active');
-        $('p#everything_else').removeClass('everything_active');
+        $(this).addClass('active');
+        $('p#everything_else').removeClass('active');
     } else {
         otherFests.show();
         classical = false;
-        $(this).removeClass('classical_active');
+        $(this).removeClass('active');
     }
 });
 
@@ -41,18 +41,18 @@ $('p#everything_else').click(function(event) {
         otherFests.show();
         folk = true;
         classical = false;
-        $(this).addClass('everything_active');
-        $('p#just_classical').removeClass('classical_active');
+        $(this).addClass('active');
+        $('p#just_classical').removeClass('active');
     } else {
         classicalFests.show();
         folk = false;
-        $(this).removeClass('everything_active');
+        $(this).removeClass('active');
     }
 });
 
 function searchFestivals(query) {
     var pattern = new RegExp(query, 'gi');
-    $('div.festival').find('a').each(function() {
+    $('div.festival').find('h2').each(function() {
         var festName = $(this).text(),
             result = pattern.test(festName),
             festival = $(this).parents('div.festival');
@@ -76,6 +76,9 @@ $('form#search_for_festival button').on('click', function() {
 });
 
 $('p.detail_prompt').on('click', function() {
-    var card = $(this).parent().siblings('.detail');
-    card.toggleClass('hidden');
+    var card = $(this).parent();
+    card.toggleClass('closed');
+    card.toggleClass('opened');
+    $(this).children('i.icon').toggleClass('ion-ios7-plus-outline');
+    $(this).children('i.icon').toggleClass('ion-ios7-plus');
 });

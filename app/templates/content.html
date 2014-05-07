@@ -37,25 +37,27 @@
                         {% endif %}
                         <h2>{{ festival.name }}</h2>
                         <p class="location">{{ festival.city|title }}{% if festival.state %}, {{ festival.state }}{% endif %}</p>
-                        <p class="detail_prompt">DETAILS <i class="icon ion-plus-circled"></i></p>
                     </div>
-                    <div class="detail hidden {{ festival.genre|lower }}">
+                    <div class="detail closed {{ festival.genre|lower }} events_{{ festival.events|length }}">
+                        <p class="detail_prompt">DETAILS <i class="icon ion-ios7-plus"></i></p>
                         <p class="festival_website"><a href="{{ festival.website }}">Festival Website</a></p>
                         <p class="festival_location"><span>{% if festival.events|length > 1%}Locations &amp; Dates{% else %}Location{% endif %}</span></p>
                         {% for event in festival.events %}
-                            {% if festival.events|length > 1 %}
-                            <p class="dates{% if event.past %} past_event{% endif %}">
-                                {{ event.start_date.strftime('%B %-d') }}
-                                {% if event.start_date != event.end_date %}
-                                &mdash; {{ event.end_date.strftime('%B %-d') }}
+                            <div class="event">
+                                {% if festival.events|length > 1 %}
+                                <p class="dates{% if event.past %} past_event{% endif %}">
+                                    {{ event.start_date.strftime('%B %-d') }}
+                                    {% if event.start_date != event.end_date %}
+                                    &mdash; {{ event.end_date.strftime('%B %-d') }}
+                                    {% endif %}
+                                </p>
                                 {% endif %}
-                            </p>
-                            {% endif %}
-                            <p class="event_address">
-                                {{ event.address }} // {{ event.city }},
-                                {{ event.state }}</p>
+                                <p class="event_address">
+                                    {{ event.address }} // {{ event.city }},
+                                    {{ event.state }}</p>
 
-                            <p class="view_map"><span class="icon ion-ios7-location"></span> <a href="http://maps.google.com?q={{ event.address }}, {{ event.city }}, {{ event.state }}" alt="Map to {{ festival.name }}">view map</a></p>
+                                <p class="view_map"><span class="icon ion-ios7-location"></span> <a href="http://maps.google.com?q={{ event.address }}, {{ event.city }}, {{ event.state }}" alt="Map to {{ festival.name }}">view map</a></p>
+                            </div>
                         {% endfor %}
                     </div>
                 </div>

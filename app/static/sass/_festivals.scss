@@ -11,7 +11,7 @@ h1 {
     text-align: right;
     border-top: 1px lighten($gray, 30%);
     border-right: 1px lighten($gray, 0%);
-    margin-bottom: 30px;
+    margin: 0 0 30px;
 }
 
 h2 {
@@ -47,6 +47,9 @@ form {
         &:hover {
             background: lighten($folk, 20%);
         }
+        &.active {
+            background: $folk !important;
+        }
     }
     p#just_classical {
         background: lighten($classical, 30%);
@@ -54,25 +57,20 @@ form {
         &:hover {
             background: lighten($classical, 20%);
         }
-    }
-    .classical_active {
-        background: $classical !important;
-    }
-    .everything_active {
-        background: $folk !important;
+        &.active {
+            background: $classical !important;
+        }
     }
 }
 
 div.festival {
     position: relative;
     margin-bottom: 20px;
-    .headline, .detail {
-        background: white;
-        padding: 10px;
-    }
     .headline {
+        background: white;
         position: relative;
         margin-bottom: 3px;
+        padding: 10px;
     }
     p.dates {
         margin-bottom: 0;
@@ -117,9 +115,18 @@ div.past {
     .folk {
         border-right: 5px solid $folk;
     }
+    .detail {
+        border-left: none;
+    }
 }
 
 .detail {
+    background: white;
+    overflow-y: hidden;
+    position: relative;
+    padding: 0 10px 10px;
+    @include transition(all .3s ease);
+
     font-size: 12px;
     .festival_website, .festival_location {
         font-size: 18px;
@@ -147,17 +154,41 @@ div.past {
             margin-right: 3px;
         }
     }
+    &.closed {
+        max-height: 20px;
+    }
+    &.opened {
+        max-height: 900px;
+        &.events_1 {
+            max-height: 130px;
+        }
+        &.events_2 {
+            max-height: 210px;
+        }
+        &.events_3 {
+            max-height: 270px;
+        }
+        &.events_4 {
+            max-height: 330px;
+        }
+        &.events_5 {
+            max-height: 390px;
+        }
+        &.events_6 {
+            max-height: 450px;
+        }
+    }
+    .detail_prompt {
+        text-align: center;
+        padding-top: 2px;
+        font-size: 12px;
+        font-weight: 700;
+        color: $gray;
+        margin-bottom: 0;
+        i {
+            font-size: 14px;
+            padding-left: 3px;
+        }
+    }
 }
 
-.hidden {
-    display: none;
-}
-
-.detail_prompt {
-    position: absolute;
-    bottom: 0;
-    right: 20px;
-    font-size: 12px;
-    font-weight: 700;
-    color: $gray;
-}

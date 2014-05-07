@@ -77,8 +77,19 @@ $('form#search_for_festival button').on('click', function() {
 
 $('p.detail_prompt').on('click', function() {
     var card = $(this).parent();
+    showDetail(card);
+});
+
+$('div.headline h2').on('click', function() {
+    var card = $(this).parent().siblings('.detail');
+    showDetail(card);
+});
+
+function showDetail(card) {
     card.toggleClass('closed');
     card.toggleClass('opened');
-    $(this).children('i.icon').toggleClass('ion-ios7-plus-outline');
-    $(this).children('i.icon').toggleClass('ion-ios7-plus');
-});
+    card.children('p.detail_prompt')
+        .children('i.icon').toggleClass('ion-ios7-plus-outline');
+    card.children('p.detail_prompt')
+        .children('i.icon').toggleClass('ion-ios7-plus');
+}

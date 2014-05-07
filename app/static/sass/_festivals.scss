@@ -12,6 +12,13 @@ h1 {
     border-top: 1px lighten($gray, 30%);
     border-right: 1px lighten($gray, 0%);
     margin: 0 0 30px;
+    a {
+        color: $black;
+        &:hover {
+            color: $blue;
+            text-decoration: none;
+        }
+    }
     @media (min-width: $phone) {
         font-size: 62px;
     }
@@ -24,10 +31,6 @@ h1 {
     @media (min-width: $big-screen) {
         font-size: 96px;
     }
-}
-
-h2 {
-    font-size: 24px;
 }
 
 form {
@@ -96,10 +99,15 @@ div.festival {
         }
     }
     h2 {
+        font-size: 24px;
         margin-top: 0;
         margin-bottom: 0.1em;
+        cursor: pointer;
         @media (max-width: $phone) {
             font-size: 18px;
+        }
+        &:hover {
+            color: $blue;
         }
     }
     p.location {

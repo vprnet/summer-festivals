@@ -28,10 +28,12 @@ $('p#just_classical').click(function(event) {
         folk = false;
         $(this).addClass('active');
         $('p#everything_else').removeClass('active');
+        $('p#all_fests').removeClass('active');
     } else {
         otherFests.show();
         classical = false;
         $(this).removeClass('active');
+        $('p#all_fests').addClass('active');
     }
 });
 
@@ -43,10 +45,24 @@ $('p#everything_else').click(function(event) {
         classical = false;
         $(this).addClass('active');
         $('p#just_classical').removeClass('active');
+        $('p#all_fests').removeClass('active');
     } else {
         classicalFests.show();
         folk = false;
         $(this).removeClass('active');
+        $('p#all_fests').addClass('active');
+    }
+});
+
+$('p#all_fests').click(function(event) {
+    if (!$(this).hasClass('active')) {
+        $(this).addClass('active');
+        $('p#just_classical').removeClass('active');
+        $('p#everything_else').removeClass('active');
+        classicalFests.show();
+        otherFests.show();
+        folk = false;
+        classical = false;
     }
 });
 
@@ -67,7 +83,28 @@ function searchFestivals(query) {
 $('form#search_for_festival').on('submit', function(e) {
     var query = $(this).children('input').val();
     searchFestivals(query);
+    $('#filters').hide();
+    $('#reset_results').show();
     return false;
+});
+
+$('p#full_results').on('click', function() {
+    var allFests = $('p#all_fests');
+
+    searchFestivals('');
+    $('#filters').show();
+    $('#reset_results').hide();
+    $('form#search_for_festival').children('input').val('');
+
+    if (!allFests.hasClass('active')) {
+        allFests.addClass('active');
+        $('p#just_classical').removeClass('active');
+        $('p#everything_else').removeClass('active');
+        classicalFests.show();
+        otherFests.show();
+        folk = false;
+        classical = false;
+    }
 });
 
 $('form#search_for_festival button').on('click', function() {

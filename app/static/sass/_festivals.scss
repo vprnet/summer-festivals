@@ -39,44 +39,74 @@ form {
         font-size: 18px;
         padding: 3px 12px;
     }
+    .btn-primary {
+        background: $blue;
+        &:hover {
+            background: darken($blue, 10%);
+            border-color: lighten($gray, 30%);
+        }
+    }
 }
 
 .form-control {
     font-size: 18px;
 }
 
+.pill {
+    cursor: pointer;
+    border: 3px solid darken($blue, 5%);
+    background: white;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    @media (min-width: $tablet) and (max-width: $laptop)  {
+        font-size: 12px;
+    }
+}
+
+#reset_results {
+    margin-bottom: 25px;
+    text-align: center;
+    display: none;
+    p {
+        &:hover {
+            background: lighten($blue, 20%);
+        }
+    }
+}
+
 #filters {
     margin-bottom: 25px;
     text-align: center;
-    p {
-        border: 3px solid $classical;
-        padding: 5px;
-        border-radius: 10px;
-        font-size: 18px;
-        font-weight: 500;
-        @media (max-width: $phone) {
-            font-size: 14px;
-        }
-    }
     p#everything_else {
-        border-color: $folk;
-        background: lighten($folk, 38%);
+        border-color: darken($folk, 5%);
         @include transition(all 0.25s);
         &:hover {
-            background: lighten($folk, 20%);
+            background: lighten($folk, 15%);
         }
         &.active {
-            background: $folk !important;
+            background: lighten($folk, 5%) !important;
         }
     }
     p#just_classical {
-        background: lighten($classical, 30%);
+        border-color: darken($classical, 2%);
         @include transition(all 0.25s);
         &:hover {
-            background: lighten($classical, 20%);
+            background: lighten($classical, 15%);
         }
         &.active {
-            background: $classical !important;
+            background: lighten($classical, 5%) !important;
+        }
+    }
+    p#all_fests {
+        border-color: $blue;
+        @include transition(all 0.25s);
+        &:hover {
+            background: lighten($blue, 15%);
+        }
+        &.active {
+            background: lighten($blue, 5%) !important;
         }
     }
 }

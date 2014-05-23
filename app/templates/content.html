@@ -14,11 +14,19 @@
                 </span>
             </form>
             <div id="filters" class="row">
-                <div class="col-xs-6">
+                <div class="col-sm-4">
+                    <p class="pill active" id="all_fests">All Festivals</p>
+                </div>
+                <div class="col-sm-4">
                     <p class="pill" id="just_classical">Just Classical</p>
                 </div>
-                <div class="col-xs-6">
+                <div class="col-sm-4">
                     <p class="pill" id="everything_else">Everything Else</p>
+                </div>
+            </div>
+            <div id="reset_results" class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <p id="full_results" class="pill">Back To Full Results</p>
                 </div>
             </div>
             <div id="festivals">
@@ -26,9 +34,10 @@
                 <div class="festival{% if festival.past %} past{% endif %}">
                     <div class="headline {{ festival.genre|lower }}">
                         <p class="dates">
+                        {% if festival.ongoing %}
+                        Happening Now: {% endif %}
                         {% if not festival.past %}
-                        {% if festival.ongoing %}Happening now{% else %}
-                        {{ festival.start_date.strftime('%B %-d') }}{% endif %}
+                        {{ festival.start_date.strftime('%B %-d') }}
                         {% if festival.start_date != festival.end_date %}
                         &mdash; {{ festival.end_date.strftime('%B %-d') }}
                         {% endif %}
@@ -74,6 +83,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}?ver=0.1"></script>
 {% endblock %}

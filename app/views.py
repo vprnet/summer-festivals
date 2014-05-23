@@ -7,15 +7,15 @@ from query import get_festivals
 @app.route('/')
 def index():
     page_url = BASE_URL + request.path
-    page_title = 'Summer Festivals'
+    page_title = 'Summer Music Festivals'
     festivals = get_festivals()
 
     social = {
-        'title': "",
+        'title': "Summer Music Festivals In Vermont",
         'subtitle': "",
-        'img': "",
-        'description': "",
-        'twitter_text': "",
+        'img': "static/img/vpr-benny-golson-discover-jazz.jpg",
+        'description': "See what music festivals are happening in and around Vermont. Classical, jazz, folk and more.",
+        'twitter_text': "Summer music festivals in and around Vermont",
         'twitter_hashtag': ""
     }
 

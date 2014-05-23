@@ -19,7 +19,6 @@ def get_festivals(sheet_key='1DC5i2FD4bwZFQu-BplE3vfpEUNVezy3TC2NVmKeXGkM', shee
 def restructure_festivals(sheet_data):
     # If a festival has already happened, mark as past for filter
     now = date.today()
-    now = date(2014, 07, 22)
     festival_names = []
     new_list = []
     for festival in sheet_data:
@@ -50,6 +49,7 @@ def restructure_festivals(sheet_data):
                 'start_date': start_date,
                 'end_date': end_date,
                 'ongoing': ongoing,
+                'website': festival['website'],
                 'events': [event]}
             new_list.append(this_fest)
         else:
@@ -60,7 +60,6 @@ def restructure_festivals(sheet_data):
                     if festival['state'] != existing['state']:
                         existing['state'] = False
                     existing['events'].append(event)
-                    print existing['name'], existing['start_date'], start_date
                     if start_date < existing['start_date']:
                         existing['start_date'] = start_date
                     if end_date > existing['end_date']:
@@ -77,9 +76,7 @@ def restructure_festivals(sheet_data):
             # to bottom
             festival['start_date'] = festival['start_date'].replace(year=2020)
         elif festival['start_date'] < now:
-            if festival['ongoing']:
-                festival['start_date'] = now
-            else:
+            if not festival['ongoing']:
                 for event in festival['events']:
                     if event['start_date'] > now:
                         festival['start_date'] = event['start_date']

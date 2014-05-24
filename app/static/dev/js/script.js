@@ -65,6 +65,8 @@ $('p#all_fests').click(function(event) {
 });
 
 function searchFestivals(query) {
+    $('#filters').hide();
+    $('#reset_results').show();
     var pattern = new RegExp(query, 'gi');
     $('div.festival').find('h2').each(function() {
         var festName = $(this).text(),
@@ -81,8 +83,6 @@ function searchFestivals(query) {
 $('form#search_for_festival').on('submit', function(e) {
     var query = $(this).children('input').val();
     searchFestivals(query);
-    $('#filters').hide();
-    $('#reset_results').show();
     return false;
 });
 

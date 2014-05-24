@@ -262,3 +262,23 @@ div.past {
     }
 }
 
+.contact {
+    max-width: 300px;
+    margin: 0 auto;
+    margin-bottom: 35px;
+    border-left: 4px solid $classical;
+    border-bottom: 4px solid $folk;
+    background: white;
+    h2 {
+        margin-top: 0;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 0px;
+        padding: 5px 0;
+    }
+    div.padding_box {
+        padding: 10px;
+        font-size: 18px;
+    }
+}
+

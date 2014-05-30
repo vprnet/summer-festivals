@@ -81,6 +81,16 @@ def restructure_festivals(sheet_data):
                     if event['start_date'] > now:
                         festival['start_date'] = event['start_date']
                         break
+    ongoing = []
+    future_past = []
+    for festival in new_list:
+        if festival['ongoing']:
+            ongoing.append(festival)
+        else:
+            future_past.append(festival)
 
-    festivals = sorted(new_list, key=itemgetter('start_date'))
+
+    future_past_fests = sorted(future_past, key=itemgetter('start_date'))
+    ongoing_fests = sorted(ongoing, key=itemgetter('end_date'))
+    festivals = ongoing_fests + future_past_fests
     return festivals

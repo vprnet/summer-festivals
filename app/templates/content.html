@@ -49,7 +49,7 @@
                     </div>
                     <div class="detail closed {{ festival.genre|lower }} events_{{ festival.events|length }}">
                         <p class="detail_prompt">DETAILS <i class="icon ion-ios7-plus"></i></p>
-                        <p class="festival_website"><a href="{{ festival.website }}">Festival Website</a></p>
+                        <p class="festival_website"><a target="_blank" href="{{ festival.website }}">Festival Website</a></p>
                         <p class="festival_location"><span>{% if festival.events|length > 1%}Locations &amp; Dates{% else %}Location{% endif %}</span></p>
                         {% for event in festival.events %}
                             <div class="event">

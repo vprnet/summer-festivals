@@ -1,8 +1,5 @@
 #VPR Summer Festival Page
 
-## Author
-[Matt Parrilla](http://twitter.com/mattparrilla)
-
 ##Copyright and License
 
 Copyright 2014 Vermont Public Radio

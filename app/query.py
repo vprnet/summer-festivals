@@ -1,17 +1,11 @@
 #!/usr/bin/python
+from sheet import get_google_sheet
 from operator import itemgetter
 from datetime import datetime, date
-from google_spreadsheet.api import SpreadsheetAPI
-from config import GOOGLE_SPREADSHEET
 
 
-def get_festivals(sheet_key='1DC5i2FD4bwZFQu-BplE3vfpEUNVezy3TC2NVmKeXGkM', sheet_id='od6'):
-    """Uses python_google_spreadsheet API to read sheet"""
-    api = SpreadsheetAPI(GOOGLE_SPREADSHEET['USER'],
-        GOOGLE_SPREADSHEET['PASSWORD'],
-        GOOGLE_SPREADSHEET['SOURCE'])
-    sheet = api.get_worksheet(sheet_key, sheet_id)
-    full_list = sheet.get_rows()
+def get_festivals():
+    full_list = get_google_sheet()
     festivals = restructure_festivals(full_list)
     return festivals
 

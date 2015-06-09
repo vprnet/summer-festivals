@@ -17,8 +17,8 @@ def restructure_festivals(sheet_data):
     new_list = []
     for festival in sheet_data:
         name = festival['name']
-        end_date = datetime.strptime(festival['enddate'], "%m/%d/%Y").date()
-        start_date = datetime.strptime(festival['startdate'], "%m/%d/%Y").date()
+        end_date = datetime.strptime(festival['end date'], "%m/%d/%Y").date()
+        start_date = datetime.strptime(festival['start date'], "%m/%d/%Y").date()
         ongoing = False
         if now >= start_date and now <= end_date:
             ongoing = True

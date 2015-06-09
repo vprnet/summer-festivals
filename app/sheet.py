@@ -11,4 +11,4 @@ def get_google_sheet():
     spreadsheet = authorization.open('Summer Festivals')
     worksheet = spreadsheet.get_worksheet(0)
 
-    return worksheet.get_all_values()
+    return worksheet.get_all_records()

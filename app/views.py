@@ -13,7 +13,7 @@ def index():
     social = {
         'title': "Summer Music Festivals In Vermont",
         'subtitle': "",
-        'img': "static/img/vpr-benny-golson-discover-jazz.jpg",
+        'img': "static/img/church-street-summer-festivals-2016.jpg",
         'description': "See what music festivals are happening in and around Vermont. Classical, jazz, folk and more.",
         'twitter_text': "Summer music festivals in and around Vermont",
         'twitter_hashtag': ""

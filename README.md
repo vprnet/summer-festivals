@@ -1,6 +1,6 @@
-#VPR Summer Festival Page
+# VPR Summer Festival Page
 
-##Copyright and License
+## Copyright and License
 
 Copyright 2014 Vermont Public Radio
 

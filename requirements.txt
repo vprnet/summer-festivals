@@ -10,3 +10,6 @@ itsdangerous==0.23
 python-google-spreadsheet==2.0.0
 requests==2.2.1
 wsgiref==0.1.2
+gspread
+oauth2client
+pycrypto

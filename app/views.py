@@ -13,8 +13,8 @@ def index():
     social = {
         'title': "Summer Music Festivals In Vermont",
         'subtitle': "",
-        'img': "static/img/marlboro.jpg",
-        'description': "See what music festivals are happening in and around Vermont. Classical, jazz, folk and more. Photo: Peter Checchia & Allen Cohen / Marlboro Music",
+        'img': "static/img/vpr-friendly-gathering-2016-crowd-shot-kaukas-20170608.jpg",
+        'description': "See what music festivals are happening in and around Vermont. Classical, jazz, folk and more. Photo: Ali Kaukas / Friendly Gathering",
         'twitter_text': "Summer music festivals in and around Vermont",
         'twitter_hashtag': ""
     }

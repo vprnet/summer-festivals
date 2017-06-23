@@ -6,14 +6,17 @@ This repo holds the code for VPR's Summer Festivals Page.
 
 The steps to get set up are here:
 
+One-time set-up work:
 1. Make sure you have Python 2.7 installed.
 1. Clone the repo locally. `git clone git@github.com:vprnet/summer-festivals.git`
 1. [Install `pip`](https://pip.pypa.io/en/latest/installing.html)
 1. Install virtualenv. `pip install virtualenv`
-1. Change into the project directory. `cd summer-festivals`
 1. Create a virtual environment for the app. `virtualenv venv`
-1. Enter the virtual environment. `source venv/bin/activate`
 1. Install the app requirements. `pip install -r requirements.txt`
+
+Regular Updates, start here:
+1. Change into the project directory. `cd summer-festivals`
+1. Enter the virtual environment. `source venv/bin/activate`
 1. To run locally, just hit a quick	`python app/index.py` and head to `127.0.0.1:5000`, but know that it will all be broken until you follow the Google Spreadsheet steps below.
 1. To push to production on Amazon S3, run `python app/index.py build`.
 
